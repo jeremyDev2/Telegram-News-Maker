@@ -1,0 +1,16 @@
+[project]
+name = "telegram-news-maker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.18.4",
+    "fastapi>=0.137.2",
+    "flower>=2.0.1",
+    "granian>=2.7.6",
+    "openai>=2.43.0",
+    "psycopg>=3.3.4",
+    "sqlalchemy>=2.0.51",
+    "telethon>=1.44.0",
+]
