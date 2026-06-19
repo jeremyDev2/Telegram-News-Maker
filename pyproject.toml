@@ -6,12 +6,18 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "alembic>=1.18.4",
+    "beautifulsoup4>=4.15.0",
+    "celery>=5.6.3",
     "fastapi>=0.137.2",
+    "feedparser>=6.0.12",
     "flower>=2.0.1",
     "granian>=2.7.6",
+    "httpx>=0.28.1",
     "openai>=2.43.0",
     "psycopg>=3.3.4",
     "pydantic-settings>=2.14.1",
+    "python-dateutil>=2.9.0.post0",
+    "redis>=8.0.0",
     "sqlalchemy>=2.0.51",
     "telethon>=1.44.0",
 ]
