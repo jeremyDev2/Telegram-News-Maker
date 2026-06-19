@@ -11,6 +11,7 @@ dependencies = [
     "granian>=2.7.6",
     "openai>=2.43.0",
     "psycopg>=3.3.4",
+    "pydantic-settings>=2.14.1",
     "sqlalchemy>=2.0.51",
     "telethon>=1.44.0",
 ]
