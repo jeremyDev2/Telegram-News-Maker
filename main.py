@@ -1,6 +1,13 @@
-def main():
-    print("Hello from telegram-news-maker!")
+from fastapi import FastAPI
+from app.api.endpoints import (sources_router, 
+                              keywords_router,
+                              posts_router, 
+                              generate_router)
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    main()
+app.include_router(sources_router)
+app.include_router(keywords_router)
+app.include_router(posts_router)
+app.include_router(generate_router)
+
