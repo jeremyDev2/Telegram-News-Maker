@@ -34,7 +34,7 @@ services:
   celery_worker:
     build: .
     env_file: .env
-    command: ["uv", "run", "celery", "-A", "celery_worker", "worker", "--loglevel=info"]
+    command: ["uv", "run", "celery", "-A", "app.workers.celery_app:celery_app", "worker", "--loglevel=info"]
     depends_on:
       - app
       - redis
@@ -42,7 +42,7 @@ services:
   celery_beat:
     build: .
     env_file: .env
-    command: ["uv", "run", "celery", "-A", "celery_worker", "beat", "--loglevel=info"]
+    command: ["uv", "run", "celery", "-A", "app.workers.celery_app:celery_app", "beat", "--loglevel=info"]
     depends_on:
       - app
       - redis
@@ -50,7 +50,7 @@ services:
   flower:
     build: .
     env_file: .env
-    command: ["uv", "run", "celery", "-A", "celery_worker", "flower", "--port=5555"]
+    command: ["uv", "run", "celery", "-A", "app.workers.celery_app:celery_app", "flower", "--port=5555"]
     ports:
       - "5555:5555"
     depends_on:
