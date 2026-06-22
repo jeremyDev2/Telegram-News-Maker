@@ -8,5 +8,6 @@ celery_app = Celery(
     broker=settings.CELERY_BROKER_URL,
     #place whith task's result's
     backend=settings.CELERY_RESULT_BACKEND,
+    include=["app.workers.tasks"]
 
 )
