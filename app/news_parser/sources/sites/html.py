@@ -8,12 +8,17 @@ from app.db.models import Source
 
 def scrape_html(source: Source) -> list[dict]:
 
-    response = httpx.get(source.url, timeout=10)
+    headers = {"User-Agent": "Mozilla/5.0 (compatible; NewsBot/1.0)"}
+    response = httpx.get(source.url, timeout=10, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     items = []
 
-    for tag in soup.find_all("article"):
-        title_tag = tag.find(["h1", "h2", "h3", "a"])
+    tags = soup.find_all("article")
+    if not tags:
+        tags = soup.find_all("div", class_=lambda c: c and "article_news_list" in c)
+
+    for tag in tags:
+        title_tag = tag.find(["h1", "h2", "h3", "a"], class_="article_title") or tag.find(["h1", "h2", "h3", "a"])
         if not title_tag:
             continue
         items.append({
