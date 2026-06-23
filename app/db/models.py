@@ -12,7 +12,7 @@ class NewsItem(Base):
 
     __tablename__ = "news_item"
     
-    id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     title: Mapped[str] = mapped_column()
     url: Mapped[str | None] = mapped_column(default=None)
     summary: Mapped[str] = mapped_column()
@@ -24,7 +24,7 @@ class Post(Base):
     
     __tablename__ = "posts"
 
-    id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     news_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("news_item.id"))
     generated_text: Mapped[str] = mapped_column()
     published_at: Mapped[datetime.datetime | None] = mapped_column(default=None)
@@ -34,7 +34,7 @@ class Source(Base):
 
     __tablename__ = "sources"
     
-    id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     type: Mapped[SourceType] = mapped_column(Enum(SourceType))
     name: Mapped[str] = mapped_column()
     url: Mapped[str] = mapped_column()
@@ -45,5 +45,5 @@ class Keyword(Base):
 
     __tablename__ = "keywords"
 
-    id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     word: Mapped[str] = mapped_column(unique=True)
