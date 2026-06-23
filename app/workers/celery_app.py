@@ -11,3 +11,10 @@ celery_app = Celery(
     include=["app.workers.tasks"]
 
 )
+
+celery_app.conf.beat_schedule = {
+    "run-pipeline-periodically":{
+        "task": "pipeline.run",
+        "schedule":settings.COLLECT_INTERVAL_MINUTES * 60,
+    },
+}
